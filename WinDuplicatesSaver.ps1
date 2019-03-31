@@ -1,13 +1,14 @@
 
 
 
-$sourcePath = "E:\Backup\Stacey"
+$sourcePath = "E:\Backup\Stacey\*"
 $destPrefix = "F:\rescue"
 $extensions = "*.pdf","*.jpg","*.doc","*.docx","*.xls","*.gif","*.mp4","*.xlsx","*.csv","*.zip"
 $baseToReplace = "E:"
 
 
-$files = get-childitem -LiteralPath $sourcePath -include $extensions -recurse -Force | sort-object {$_.Name}
+#$files = get-childitem -Path $sourcePath -include $extensions -recurse -Force | sort-object {$_.Name}
+$files = get-childitem -literalPath $sourcePath -Filter $extensions -recurse -Force | sort-object {$_.Name}
 
 #initialize an empty array
 $validFiles = @()
