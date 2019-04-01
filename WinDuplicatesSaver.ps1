@@ -1,13 +1,14 @@
 
 
 
-$sourcePath = "E:\Backup\Stacey\*"
+$sourcePath = "E:\Backup\Stacey\"
 $destPrefix = "F:\rescue"
-$extensions = "*.pdf","*.jpg","*.doc","*.docx","*.xls","*.gif","*.mp4","*.xlsx","*.csv","*.zip"
+$extensions = "*.pdf","*.jpg","*.doc","*.docx","*.xls","*.gif","*.mp4","*.xlsx","*.csv","*.zip","*.ppt","*.pptx"
 $baseToReplace = "E:"
 
 
-#$files = get-childitem -Path $sourcePath -include $extensions -recurse -Force | sort-object {$_.Name}
+# -literalPath is needed for files and directories with meta-characters and -Filter should be used instead of -include
+# as -include appears to be buggy and requires an * in the path which -literalPath does not support.
 $files = get-childitem -literalPath $sourcePath -Filter $extensions -recurse -Force | sort-object {$_.Name}
 
 #initialize an empty array
